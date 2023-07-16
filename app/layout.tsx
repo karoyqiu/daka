@@ -13,13 +13,13 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <body className="flex flex-col">
-        <div className="navbar bg-neutral text-neutral-content px-4">
+        <nav className="navbar bg-neutral text-neutral-content px-4">
           <label className="label flex-1">
             <span className="text-lg">
               {metadata.title}
             </span>
           </label>
-        </div>
+        </nav>
         <main className="flex flex-col gap-4">
           {children}
         </main>

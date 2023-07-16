@@ -999,8 +999,11 @@ __metadata:
     "@types/react-dom": ^18.2.7
     autoprefixer: ^10.4.14
     daisyui: ^3.2.1
+    dexie: ^3.2.4
+    dexie-react-hooks: ^1.1.6
     eslint: ^8.45.0
     eslint-config-next: ^13.4.10
+    material-icons: ^1.13.8
     next: ^13.4.10
     postcss: ^8.4.26
     react: ^18.2.0
@@ -1102,6 +1105,24 @@ __metadata:
   version: 2.0.3
   resolution: "dequal@npm:2.0.3"
   checksum: 8679b850e1a3d0ebbc46ee780d5df7b478c23f335887464023a631d1b9af051ad4a6595a44220f9ff8ff95a8ddccf019b5ad778a976fd7bbf77383d36f412f90
+  languageName: node
+  linkType: hard
+
+"dexie-react-hooks@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "dexie-react-hooks@npm:1.1.6"
+  peerDependencies:
+    "@types/react": ">=16"
+    dexie: ^3.2 || ^4.0.1-alpha
+    react: ">=16"
+  checksum: 64beabf2929327b14963b92002a395237be081dfa2c1cf1d1884d196950fbee00457960ec3ec866de814433a7729000722d1355352810fb9b5f863a04236a8e3
+  languageName: node
+  linkType: hard
+
+"dexie@npm:^3.2.4":
+  version: 3.2.4
+  resolution: "dexie@npm:3.2.4"
+  checksum: 4e5294a954118b6862c864b8c3970904a1733daebcd919488624520696411e2e81ed1bceeac3634c5c15a21e37ce4b8502ed41c4edfbc5ba3f5925c34d56497b
   languageName: node
   linkType: hard
 
@@ -2605,6 +2626,13 @@ __metadata:
     socks-proxy-agent: ^7.0.0
     ssri: ^10.0.0
   checksum: 7268bf274a0f6dcf0343829489a4506603ff34bd0649c12058753900b0eb29191dce5dba12680719a5d0a983d3e57810f594a12f3c18494e93a1fbc6348a4540
+  languageName: node
+  linkType: hard
+
+"material-icons@npm:^1.13.8":
+  version: 1.13.8
+  resolution: "material-icons@npm:1.13.8"
+  checksum: e3028d907654dccfcecf398e054c8d0d233e67ea0d30a41e59e7a14dacbbab561fc36ccb0bca30d2871b7646ed18dfe96436d935f0fb1b5fabfa82c1ba7fc105
   languageName: node
   linkType: hard
 
