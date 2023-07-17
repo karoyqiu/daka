@@ -1,8 +1,32 @@
+import { Metadata } from 'next';
 import './globals.css';
 
-export const metadata = {
-  title: '打卡',
-  description: '每日打卡',
+const title = '每日打卡';
+
+export const metadata: Metadata = {
+  title,
+  description: title,
+  applicationName: title,
+  authors: {
+    name: 'Roy QIU',
+    url: 'karoyqiu@gmail.com',
+  },
+  appleWebApp: {
+    capable: true,
+    title,
+    statusBarStyle: 'default',
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  manifest: '/manifest.json',
+  viewport: {
+    minimumScale: 1,
+    initialScale: 1,
+    width: 'device-width',
+    userScalable: false,
+    viewportFit: 'cover',
+  },
 };
 
 export default function RootLayout({
@@ -16,7 +40,7 @@ export default function RootLayout({
         <nav className="navbar bg-neutral text-neutral-content px-4">
           <label className="label flex-1">
             <span className="text-lg">
-              {metadata.title}
+              {title}
             </span>
           </label>
         </nav>
