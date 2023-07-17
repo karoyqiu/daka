@@ -14,6 +14,18 @@ export default function AddJobDialog() {
 
   const add = () => {
     db.jobs.add({ name, time });
+
+    switch (Notification.permission) {
+      case 'granted':
+      case 'denied':
+        console.log(`Notification permission: ${Notification.permission}`);
+        break;
+
+      case 'default':
+      default:
+        Notification.requestPermission();
+        break;
+    }
   };
 
   return (

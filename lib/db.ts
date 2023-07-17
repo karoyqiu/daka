@@ -18,6 +18,10 @@ export interface JobRecord {
   time: Date;
 }
 
+export type JobWithRecord = Job & {
+  recordTime?: Date,
+}
+
 class Database extends Dexie {
   jobs!: Dexie.Table<Job, number>;
   records!: Dexie.Table<JobRecord, number>;
