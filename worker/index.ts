@@ -1,6 +1,7 @@
 import { checkIn, getJobs } from '@/lib/db';
 
 declare var self: ServiceWorkerGlobalScope & typeof globalThis;
+let timer = 0;
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
@@ -29,4 +30,8 @@ const check = async () => {
   await Promise.all(promises);
 };
 
-setInterval(check, 30 * 1000);
+if (timer) {
+  self.clearInterval(timer);
+}
+
+timer = self.setInterval(check, 30 * 1000);
