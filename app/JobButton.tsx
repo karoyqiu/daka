@@ -1,31 +1,37 @@
 import dayjs from 'dayjs';
-import db, { JobWithRecord } from '../lib/db';
+import db, { JobWithRecord, checkIn } from '../lib/db';
 
-const isCheckedToday = (job: JobWithRecord) => {
-  if (job.recordTime) {
-    const d = dayjs(job.recordTime);
+const getJobIcon = (job: JobWithRecord) => {
+  let icon = 'sentiment_satisfied';
 
-    if (d.isToday()) {
-      return true;
-    }
+  if (!job.checked) {
+    icon = job.late ? 'sentiment_dissatisfied' : 'sentiment_neutral';
   }
 
-  return false;
+  return (
+    <span className="material-icons-outlined">
+      {icon}
+    </span>
+  );
 };
 
-const getJobIcon = (job: JobWithRecord) => (
-  <span className="material-icons-outlined">
-    {isCheckedToday(job) ? 'sentiment_satisfied' : 'sentiment_neutral'}
-  </span>
-);
+const getJobColor = (job: JobWithRecord) => {
+  if (job.checked) {
+    return 'btn-success';
+  }
 
-const getJobColor = (job: JobWithRecord) => (
-  isCheckedToday(job) ? 'btn-success' : 'btn-accent'
-);
+  return job.late ? 'btn-error' : 'btn-accent';
+};
 
-const getJobTime = (job: JobWithRecord) => (
-  isCheckedToday(job) ? dayjs(job.recordTime).format('HH:mm') : `~${job.time}`
-);
+const getJobTime = (job: JobWithRecord) => {
+  if (job.checked) {
+    return dayjs(job.recordTime).format('HH:mm');
+  }
+
+  const h = `${Math.floor(job.time / 100)}`;
+  const m = `${job.time % 100}`;
+  return `~${h.padStart(2, '0')}:${m.padStart(2, '0')}`;
+};
 
 
 type JobButtonProps = {
@@ -34,13 +40,6 @@ type JobButtonProps = {
 
 export default function JobButton(props: JobButtonProps) {
   const { job } = props;
-
-  const checkIn = async () => {
-    await db.records.add({
-      jobId: job.id!,
-      time: new Date(),
-    });
-  };
 
   const remove = async () => {
     await Promise.all([
@@ -51,7 +50,7 @@ export default function JobButton(props: JobButtonProps) {
 
   return (
     <div className="join">
-      <button className={`btn ${getJobColor(job)} join-item flex-1`} onClick={checkIn}>
+      <button className={`btn ${getJobColor(job)} join-item flex-1`} onClick={() => checkIn(job.id!)}>
         {getJobIcon(job)}
         {job.name}@{getJobTime(job)}
       </button>

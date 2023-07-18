@@ -13,7 +13,10 @@ export default function AddJobDialog() {
   }, [ref]);
 
   const add = () => {
-    db.jobs.add({ name, time });
+    const semi = time.indexOf(':');
+    const h = parseInt(time.substring(0, semi), 10);
+    const m = parseInt(time.substring(semi + 1));
+    db.jobs.add({ name, time: h * 100 + m });
 
     switch (Notification.permission) {
       case 'granted':

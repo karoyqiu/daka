@@ -1,5 +1,4 @@
 'use client';
-
 import AddJobDialog from './AddJobDialog';
 import JobTable from './JobTable';
 
